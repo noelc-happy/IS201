@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mood Color Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 3rem;
+      transition: background 1s ease;
+      color: white;
+      background: linear-gradient(to right, #667eea, #764ba2);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"] {
+      padding: 0.6rem;
+      border-radius: 5px;
+      border: none;
+      width: 250px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.6rem 1rem;
+      margin-left: 0.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffffffcc;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffffff;
+    }
+
+    .result {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .quote {
+      margin-top: 1rem;
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+  </style>
+      <div class=" common header">
+        <a href="../index.html"id=top>Home</a> | 
+        <a href="../Html/resume.html">Resume</a> | 
+        <a href="../startbootstrap-grayscale-gh-pages/index.html">Professional Page</a> | 
+        <a href="../Html/app.html">Mood Generator</a> | 
+        <a href="aboutme.html">About Me</a><br><br>
+</head>
+<body>
+  <h1>Mood Color Generator</h1>
+  <p>How are you feeling?</p>
+  <input type="text" id="moodInput" placeholder="e.g. motivated, grateful, calm" />
+  <button onclick="generateMood()">Generate</button>
+
+  <div class="result" id="colorResult"></div>
+  <div class="quote" id="quoteResult"></div>
+
+  <script>
+    const moods = {
+      happy: {
+        color: "#f6d365",
+        bg: "linear-gradient(to right, #fda085, #f6d365)",
+        quote: "Happiness is not by chance, but by choice."
+      },
+      sad: {
+        color: "#89f7fe",
+        bg: "linear-gradient(to right, #66a6ff, #89f7fe)",
+        quote: "Tears come from the heart and not from the brain."
+      },
+      stressed: {
+        color: "#ff758c",
+        bg: "linear-gradient(to right, #ff7eb3, #ff758c)",
+        quote: "Slow down. Take a breath. You've got this."
+      },
+      calm: {
+        color: "#a1c4fd",
+        bg: "linear-gradient(to right, #c2e9fb, #a1c4fd)",
+        quote: "Peace begins with a deep breath."
+      },
+      hopeful: {
+        color: "#fbc2eb",
+        bg: "linear-gradient(to right, #a6c1ee, #fbc2eb)",
+        quote: "Every sunrise brings a new beginning."
+      },
+      angry: {
+        color: "#ff6a6a",
+        bg: "linear-gradient(to right, #ff6a6a, #ee0979)",
+        quote: "Speak when you are calm, not when you are angry."
+      },
+      motivated: {
+        color: "#00c9ff",
+        bg: "linear-gradient(to right, #92fe9d, #00c9ff)",
+        quote: "Don’t wait for opportunity. Create it."
+      },
+      tired: {
+        color: "#d9a7c7",
+        bg: "linear-gradient(to right, #fffcdc, #d9a7c7)",
+        quote: "Rest is not idleness. Take time to recharge."
+      },
+      excited: {
+        color: "#f7971e",
+        bg: "linear-gradient(to right, #f7971e, #ffd200)",
+        quote: "Energy and enthusiasm are contagious!"
+      },
+      anxious: {
+        color: "#a1c4fd",
+        bg: "linear-gradient(to right, #c2e9fb, #a1c4fd)",
+        quote: "Feelings are visitors—let them come and go."
+      },
+      peaceful: {
+        color: "#43cea2",
+        bg: "linear-gradient(to right, #185a9d, #43cea2)",
+        quote: "Peace does not mean to be in a place with no noise, trouble, or hard work."
+      },
+      confident: {
+        color: "#3a1c71",
+        bg: "linear-gradient(to right, #d76d77, #ffaf7b)",
+        quote: "Believe in yourself and all that you are."
+      },
+      grateful: {
+        color: "#ffecd2",
+        bg: "linear-gradient(to right, #fcb69f, #ffecd2)",
+        quote: "Gratitude turns what we have into enough."
+      },
+      lonely: {
+        color: "#7F7FD5",
+        bg: "linear-gradient(to right, #86A8E7, #91EAE4)",
+        quote: "You are never as alone as you think you are."
+      },
+      overwhelmed: {
+        color: "#ff9a9e",
+        bg: "linear-gradient(to right, #fad0c4, #ff9a9e)",
+        quote: "One step at a time is how great things are done."
+      },
+      loved: {
+        color: "#fcb045",
+        bg: "linear-gradient(to right, #ee0979, #fcb045)",
+        quote: "You are deeply loved and valued."
+      },
+      inspired: {
+        color: "#c6ffdd",
+        bg: "linear-gradient(to right, #fbd786, #f7797d)",
+        quote: "Let your ideas set the world on fire."
+      },
+      bored: {
+        color: "#e0c3fc",
+        bg: "linear-gradient(to right, #8ec5fc, #e0c3fc)",
+        quote: "Boredom is the gateway to creativity."
+      },
+      relaxed: {
+        color: "#76b852",
+        bg: "linear-gradient(to right, #8DC26F, #76b852)",
+        quote: "Relax. Everything is going to be okay."
+      },
+      curious: {
+        color: "#30cfd0",
+        bg: "linear-gradient(to right, #330867, #30cfd0)",
+        quote: "Curiosity is the engine of achievement."
+      },
+      creative: {
+        color: "#fc466b",
+        bg: "linear-gradient(to right, #3f5efb, #fc466b)",
+        quote: "Creativity is intelligence having fun."
+      }
+    };
+
+    function generateMood() {
+      const input = document.getElementById('moodInput').value.toLowerCase().trim();
+      const result = document.getElementById('colorResult');
+      const quote = document.getElementById('quoteResult');
+
+      if (moods[input]) {
+        document.body.style.background = moods[input].bg;
+        result.textContent = `Your mood color is: ${moods[input].color}`;
+        quote.textContent = `"${moods[input].quote}"`;
+      } else {
+        document.body.style.background = "linear-gradient(to right, #667eea, #764ba2)";
+        result.textContent = "Mood not recognized. Try another one!";
+        quote.textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>
